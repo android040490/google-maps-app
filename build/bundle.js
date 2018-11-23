@@ -64177,9 +64177,15 @@ var MyMap = function (_Component) {
       var markers = [];
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         results.forEach(function (place) {
+          console.log(place.icon);
           var marker = {
             position: place.geometry.location,
-            icon: place.icon,
+            icon: {
+              url: place.icon,
+              size: new google.maps.Size(30, 30),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25) },
             title: place.name
           };
           markers = markers.concat(marker);
@@ -74396,6 +74402,10 @@ var _selectors = __webpack_require__(93);
 
 var _actions = __webpack_require__(180);
 
+var _user = __webpack_require__(1404);
+
+var _user2 = _interopRequireDefault(_user);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74433,6 +74443,7 @@ var SignInSignOutBTN = function (_Component) {
                 user ? _react2.default.createElement(
                     'div',
                     null,
+                    _react2.default.createElement('img', { style: { width: '20px' }, src: _user2.default, alt: '' }),
                     _react2.default.createElement(
                         'span',
                         { className: 'auth-name' },
@@ -83169,6 +83180,20 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
+
+/***/ }),
+/* 1396 */,
+/* 1397 */,
+/* 1398 */,
+/* 1399 */,
+/* 1400 */,
+/* 1401 */,
+/* 1402 */,
+/* 1403 */,
+/* 1404 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/icons/user-8e2c571f.png";
 
 /***/ })
 /******/ ]);

@@ -67,10 +67,16 @@ class MyMap extends Component {
     let markers = [];
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       results.forEach(place => {
+        console.log(place.icon)
         let marker = {
           position: place.geometry.location,
-          icon: place.icon,
-          title: place.name
+          icon: {
+            url : place.icon,
+            size : new google.maps.Size(30, 30), 
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)},
+            title: place.name
         };
         markers = markers.concat(marker)
       })
