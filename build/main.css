@@ -1,0 +1,251 @@
+@font-face {
+  font-family: Proxima Nova;
+  src: url(/build/assets/fonts/ProximaNova-Light-0188899c.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Proxima Nova;
+  src: url(/build/assets/fonts/ProximaNova-Regular-7ce6760d.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Proxima Nova;
+  src: url(/build/assets/fonts/ProximaNova-Semibold-df8c6264.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+html,
+body {
+  font-family: Proxima Nova;
+  font-weight: 500;
+  font-size: 16px;
+}
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+p {
+  line-height: 150%;
+}
+a {
+  text-decoration: none;
+}
+.header {
+  padding: 15px 0;
+  background: linear-gradient(#2688d8, #40b1e6 50%, #2688d8);
+}
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+}
+.navbar__link {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  padding: 5px 10px;
+}
+.navbar__link--active {
+  color: #072072;
+}
+.auth-btn {
+  color: #fff;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.auth-name {
+  color: #fff;
+  font-size: 16px;
+}
+.map-container {
+  position: relative;
+  width: 600px;
+}
+.map-container__sidebar {
+  position: absolute;
+  top: 15%;
+  right: 0;
+}
+.map-sidebar {
+  background: #041857;
+}
+.map-sidebar__title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  padding: 5px;
+}
+.places-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 140px;
+  overflow: auto;
+}
+.places-list__item {
+  color: #d3d9df;
+  background: #041857;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+.places-list__item--active {
+  color: #041857;
+  background: #d3d9df;
+}
+.map-btn {
+  width: 100%;
+  padding: 5px 8px;
+  background: #40b1e6;
+  border: 1px solid #000;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.map-btn:hover {
+  color: #d3d9df;
+  background: #2688d8;
+}
+.page__content {
+  padding: 20px 0;
+}
+.login-form {
+  max-width: 600px;
+  padding: 10px 20px;
+  margin: auto;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 5px 2px #1e1e1e;
+}
+.login-form__form {
+  display: flex;
+  flex-direction: column;
+}
+.login-form__form-item {
+  padding: 10px 0;
+}
+.login-form input,
+.login-form button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #494747;
+  border-radius: 3px;
+  font-size: 16px;
+}
+.login-form input[type='submit'] {
+  color: #fff;
+  font-weight: 700;
+  background: #2688d8;
+  border: none;
+  cursor: pointer;
+}
+.login-form input:focus {
+  outline: none;
+}
+.login-form input[type='submit']:hover {
+  color: #d3d9df;
+  background: #1363a5;
+}
+.login-form input.valid {
+  border-color: #09c009;
+}
+.login-form input.invalid {
+  border-color: #f00;
+}
+.error-message {
+  background: #f00;
+  color: #fff;
+  padding: 5px;
+}
+.form-err {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f00;
+}
+.wrapper {
+  max-width: 1000px;
+  margin: auto;
+}
+.preloader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.preloader__title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.preloader__load {
+  height: 45px;
+  display: flex;
+  align-items: flex-end;
+}
+.preloader__item {
+  display: inline-block;
+  width: 5px;
+  min-height: 7px;
+  margin: 10px 2px;
+  background: #000;
+  animation: zoom 0.35s linear infinite alternate;
+}
+.preloader .item-1 {
+  animation-delay: 0.05s;
+}
+.preloader .item-2 {
+  animation-delay: 0.1s;
+}
+.preloader .item-3 {
+  animation-delay: 0.15s;
+}
+.preloader .item-4 {
+  animation-delay: 0.2s;
+}
+.preloader .item-5 {
+  animation-delay: 0.25s;
+}
+.preloader .item-6 {
+  animation-delay: 0.3s;
+}
+.preloader .item-7 {
+  animation-delay: 0.35s;
+}
+.preloader .item-8 {
+  animation-delay: 0.4s;
+}
+.preloader .item-9 {
+  animation-delay: 0.45s;
+}
+@keyframes zoom {
+  0% {
+    min-height: 10px;
+  }
+  100% {
+    min-height: 30px;
+    background: rgba(100, 100, 100, 0.5);
+  }
+}

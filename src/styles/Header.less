@@ -1,0 +1,35 @@
+.header{
+    padding: 15px 0;
+    background: linear-gradient( @header-bg, @header-bg1 50%, @header-bg);
+    &__navbar{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    &__link{
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        padding: 5px 10px;
+    }
+    &__link--active{
+        color: @actv-col-link;
+    }
+}
+
+.auth-btn{
+    color: #fff;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.auth-name{
+    color: #fff;
+    font-size: 16px;
+}

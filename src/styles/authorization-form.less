@@ -1,0 +1,61 @@
+.login-form{
+    max-width: 600px;
+    padding: 10px 20px;
+    margin: auto;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 5px 2px rgb(30, 30, 30);
+    &__form{
+        display: flex;
+        flex-direction: column;
+        &-item{
+            padding: 10px 0;
+        }
+    }
+
+    input, button{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid @input-brdr;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+    input[type='submit']{
+        color: #fff;
+        font-weight: 700;
+        background: @form-btn-bg1;
+        border: none;
+        cursor: pointer;
+    }
+    
+    input:focus{
+        outline: none;
+    }
+
+    input[type='submit']:hover{
+        color: rgb(211, 217, 223);
+        background: @form-btn-bg2;
+
+    }
+    input.valid{
+        border-color: rgb(9, 192, 9);
+    }
+    input.invalid{
+        border-color: @err-col;
+    }
+}
+
+.error-message{
+    background: @err-col;
+    color: #fff;
+    padding: 5px;
+}
+
+.form-err{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: @err-col;
+    &__stat{}
+    &__mes{}
+}
