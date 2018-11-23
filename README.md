@@ -10,8 +10,6 @@ If you don't need local deployment, you can look to work of this application on 
 
 ### Entry to the application
 Fill out the login form with the following data:
----
-email : `user@gmail.com`
----
-password : `1234`
+* email : `user@gmail.com`
+* password : `1234`
 
