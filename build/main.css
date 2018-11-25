@@ -86,24 +86,22 @@ a {
 .auth-tools {
   display: flex;
 }
-.auth-tools .auth-btn {
-  color: #fff;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
 .auth-tools__item {
   display: flex;
   align-items: center;
+  padding: 0 5px;
   color: #fff;
   font-size: 16px;
   background: transparent;
   border: none;
+  border-right: 2px solid #fff;
 }
 .auth-tools__item-icon {
   width: 20px;
   padding: 5px;
+}
+.auth-tools__item:last-child {
+  border: none;
 }
 .auth-tools a,
 .auth-tools button {

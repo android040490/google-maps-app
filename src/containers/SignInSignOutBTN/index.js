@@ -24,8 +24,8 @@ class SignInSignOutBTN extends Component {
         let { user } = this.props;
         let userName = user && (
             <div className="auth-tools__item">
-                <img className="auth-name__icon" src={iconUser} alt={user.name} />
-                {user.name} |
+                <img className="auth-tools__item-icon" src={iconUser} alt={user.name} />
+                {user.name}
             </div>
         );
 
@@ -41,7 +41,7 @@ class SignInSignOutBTN extends Component {
                     <img className="auth-tools__item-icon" src={iconSignIn} alt="sign in" />
                 </Link>
             );
-            
+
         return (
             <div className="auth-tools">
                 {userName}
