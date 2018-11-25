@@ -4,12 +4,28 @@
     &__navbar{
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 }
 
 .navbar{
     display: flex;
     flex-direction: row;
+}
+
+.nav-link{
+    position: relative;
+    &__hr{
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        background-color: #fff;
+        height: 2px;
+        transform: scaleX(0);
+        transition: transform .2s linear;
+        border: none;
+        border-radius: 2px;
+    }
     &__link{
         font-size: 16px;
         text-transform: uppercase;
@@ -19,17 +35,37 @@
     }
     &__link--active{
         color: @actv-col-link;
+    } 
+}
+.nav-link:hover{
+    .nav-link__hr{
+        transform: scaleX(1);
     }
 }
 
-.auth-btn{
-    color: #fff;
-    font-size: 16px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-.auth-name{
-    color: #fff;
-    font-size: 16px;
+
+.auth-tools{
+    display: flex;
+    .auth-btn{
+        color: #fff;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        &-icon{
+            width: 20px;
+            padding: 5px;
+        }
+    }
+    a, button{
+        cursor: pointer;
+    }
 }

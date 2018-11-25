@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 
-import {NavLink} from 'react-router-dom';
-
+import NavBarLink from 'components/NavBarLink';
 
 class NavBar extends Component {
     render() {
         return (
             <div>
                 <ul className="navbar">
-                    <li><NavLink exact to="/" className="navbar__link" activeClassName="navbar__link--active">Main Page</NavLink></li>
-                    <li><NavLink to="/about-auth" className="navbar__link" activeClassName="navbar__link--active">About author</NavLink></li>
+                    <li>
+                        <NavBarLink exact to="/">Main Page</NavBarLink>
+                    </li>
+                    <li>
+                        <NavBarLink to="/about-auth">About author</NavBarLink>
+                    </li>
                 </ul>
             </div>
         );

@@ -9,19 +9,14 @@ class ProtectedRoute extends Component {
         let {component: Component, user, ...rest} = this.props;
         return (
             <Route 
-            {...rest}
-            render={props => 
-                user ? (
-                    <Component {...props}/>
-                ): (
-                    <Redirect 
-                        to={{
-                            pathname: '/authorization',
-                            state: {from: props.location}
-                        }}
-                    />
-                )
-            }
+                {...rest}
+                render={props => 
+                    user ? (
+                        <Component {...props}/>
+                    ): (
+                        <Redirect to={{pathname: '/authorization'}}/>
+                    )
+                }
             />
         );
     }

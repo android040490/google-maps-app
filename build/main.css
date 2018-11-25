@@ -50,31 +50,64 @@ a {
 .header__navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .navbar {
   display: flex;
   flex-direction: row;
 }
-.navbar__link {
+.nav-link {
+  position: relative;
+}
+.nav-link__hr {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background-color: #fff;
+  height: 2px;
+  transform: scaleX(0);
+  transition: transform 0.2s linear;
+  border: none;
+  border-radius: 2px;
+}
+.nav-link__link {
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 700;
   color: #fff;
   padding: 5px 10px;
 }
-.navbar__link--active {
-  color: #072072;
+.nav-link__link--active {
+  color: #f5ca0c;
 }
-.auth-btn {
+.nav-link:hover .nav-link__hr {
+  transform: scaleX(1);
+}
+.auth-tools {
+  display: flex;
+}
+.auth-tools .auth-btn {
   color: #fff;
   font-size: 16px;
   background: transparent;
   border: none;
   cursor: pointer;
 }
-.auth-name {
+.auth-tools__item {
+  display: flex;
+  align-items: center;
   color: #fff;
   font-size: 16px;
+  background: transparent;
+  border: none;
+}
+.auth-tools__item-icon {
+  width: 20px;
+  padding: 5px;
+}
+.auth-tools a,
+.auth-tools button {
+  cursor: pointer;
 }
 .map-container {
   position: relative;
@@ -83,7 +116,7 @@ a {
 .map-container__sidebar {
   position: absolute;
   top: 15%;
-  right: 0;
+  left: 0;
 }
 .map-sidebar {
   background: #041857;
@@ -92,14 +125,14 @@ a {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #40b1e6;
   padding: 5px;
 }
 .places-list {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 140px;
+  max-height: 140px;
   overflow: auto;
 }
 .places-list__item {
@@ -110,9 +143,12 @@ a {
   border-bottom: 1px solid #fff;
   cursor: pointer;
 }
+.places-list__item:hover {
+  background-color: #082ca3;
+}
 .places-list__item--active {
   color: #041857;
-  background: #d3d9df;
+  background: #d3d9df !important;
 }
 .map-btn {
   width: 100%;

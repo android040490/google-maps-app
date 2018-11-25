@@ -14,7 +14,8 @@ class PlacesList extends Component {
     }
 
     handleClick(e){
-        this.props.setSearchType(e.target.dataset.place)
+        let newVal = this.props.activePlace == e.target.dataset.place ? '' : e.target.dataset.place
+        this.props.setSearchType(newVal)
     }
     
     render() {
@@ -24,7 +25,8 @@ class PlacesList extends Component {
                 <ul className="places-list">
                     {
                         places.map((val, index) => {
-                            return <li 
+                            return (
+                                <li 
                                     key={val + index} 
                                     className={`places-list__item ${this.props.activePlace == val && 'places-list__item--active'}`}
                                     onClick={this.handleClick} 
@@ -32,6 +34,7 @@ class PlacesList extends Component {
                                 >
                                     {val}
                                 </li>
+                            )
                         })
                     }
                 </ul>

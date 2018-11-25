@@ -1,176 +1,151 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
 import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    Marker,
 } from "react-google-maps";
 
 import { setMyPlaces } from 'redux-store/actions';
-import { getPlacesType, getMyPlaces} from 'redux-store/selectors';
-
-import MarkerContainer from 'components/MarkerContainer';
+import { getPlacesType, getMyPlaces } from 'redux-store/selectors';
 
 class MyMap extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      markers : [],
-      savedMarkers : [],
-      places : [],
-      myPosition : {},
-      markersVisible : false
+        this.state = {
+            markers: [],
+            places: [],
+            myPosition: {},
+            myMarkersVisible: false
+        }
+
+        this.handleClickOnTheMap = this.handleClickOnTheMap.bind(this);
+        this.callback = this.callback.bind(this);
+        this.saveMarkers = this.saveMarkers.bind(this);
+        this.showMarkers = this.showMarkers.bind(this);
     }
 
-    this.handleClickOnTheMap = this.handleClickOnTheMap.bind(this);
-    this.callback = this.callback.bind(this);
-    this.saveMarkers = this.saveMarkers.bind(this);
-    this.showMarkers = this.showMarkers.bind(this);
-  }
-
-  componentDidMount() {
-    let myPosition = {
-      position: this.props.pos,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: '#00CCBB',
-        fillOpacity: 1,
-        strokeColor: '#0099AA',
-        strokeWeight: 2,
-        scale: 10
-      }
+    componentDidMount() {
+        this.getPlaces(this.props.nearPlacesType)
+        let myPosition = {
+            position: this.props.pos,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#00CCBB',
+                fillOpacity: 1,
+                strokeColor: '#0099AA',
+                strokeWeight: 2,
+                scale: 10
+            }
+        }
+        this.setState({ myPosition: myPosition })
     }
-    this.setState({myPosition : myPosition})
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.placeType != this.props.placeType) {
-      this.getPlaces(nextProps.placeType)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.nearPlacesType != this.props.nearPlacesType) {
+            this.getPlaces(nextProps.nearPlacesType)
+        }
     }
-  }
 
-  getPlaces(placesType) {
-    let request = {
-      location: this.props.pos,
-      radius: '4000',
-      type: [placesType]
-    };
-    let service = new google.maps.places.PlacesService(this.refMap.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED);
-    service.nearbySearch(request, this.callback);
-  }
-
-  callback(results, status) {
-    let markers = [];
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      results.forEach(place => {
-        console.log(place.icon)
-        let marker = {
-          position: place.geometry.location,
-          icon: {
-            url : place.icon,
-            size : new google.maps.Size(30, 30), 
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25)},
-            title: place.name
+    getPlaces(placesType) {
+        let request = {
+            location: this.props.pos,
+            radius: '4000',
+            type: [placesType]
         };
-        markers = markers.concat(marker)
-      })
+        let service = new google.maps.places.PlacesService(this.refMap.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED);
+        service.nearbySearch(request, this.callback);
     }
-    this.setState({ places: markers })
-  }
 
-  handleClickOnTheMap(e) {
-    let marker = {
-      position: e.latLng
-    };
-    this.setState({ markers: this.state.markers.concat([marker]) })
-  }
+    callback(results, status) {
+        let markers = [];
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            results.forEach(place => {
 
-  saveMarkers() {
-    if (this.state.markers.length) {
-      this.props.setMyPlaces(this.state.markers)
-      this.setState({ markers: [], markersVisible: false })
+                let marker = {
+                    position: {
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    },
+                    icon: {
+                        url: place.icon,
+                        size: new google.maps.Size(30, 30),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    },
+                    title: place.name,
+                    animation: google.maps.Animation.DROP
+                };
+                markers = markers.concat(marker)
+            })
+        }
+        this.setState({ places: markers })
     }
-  }
 
-  showMarkers(){
-    if (this.state.markersVisible) {
-      this.setState({ markersVisible: false, savedMarkers : [] })
-    } else {
-      this.setState({ markersVisible: true, savedMarkers : this.props.myMarkers })
+    handleClickOnTheMap(e) {
+        let marker = {
+            position: e.latLng
+        };
+        this.setState({ markers: this.state.markers.concat([marker]) })
     }
-  }
 
-  renderMyCurrentLocation(){
-    return (
-      this.createMarker(this.state.myPosition)
-    )
-  }
+    saveMarkers() {
+        if (this.state.markers.length) {
+            this.props.setMyPlaces(this.state.markers)
+            this.setState({ markers: [], myMarkersVisible: false })
+        }
+    }
 
-  renderNearbyPlaces(){
-    return this.state.places.map( (place, index) => {
-      return (
-        <div key={place.title + index}>
-          {this.createMarker(place)}
-        </div>
-      )
-    })
-  }
+    showMarkers() {
+        this.setState({ myMarkersVisible: !this.state.myMarkersVisible })
+    }
 
-  renderMyMarkers(){
-    let listMarkers = this.state.savedMarkers.concat(this.state.markers)
-    return listMarkers.map((marker, index) => {
-      return (
-        <div key={index}>
-          {this.createMarker(marker)}
-        </div>
-      )
-    })
-  }
-  
-  createMarker(place){
-    return (
-      <MarkerContainer
-        marker={place}
-      />
-    )
-  }
+    renderMarkers(markers) {
+        return markers.map((marker, index) => {
+            return (
+                <div key={index + marker.position.lat}>
+                    <Marker {...marker}/>
+                </div>
+            )
+        })
+    }
 
-  render() {
-    return (
-      <div>
-        <GoogleMap
-          ref={el => this.refMap = el}
-          defaultZoom={14}
-          defaultCenter={this.props.pos}
-          onClick={this.handleClickOnTheMap}
-        > 
-          {this.renderMyCurrentLocation()}
-          {this.renderNearbyPlaces()}
-          {this.renderMyMarkers()}
+    render() {
+        let nearbyPlaces = this.props.nearPlacesType != '' ? this.state.places : [];
+        let savedMarkers = this.state.myMarkersVisible ? this.props.myMarkers : [];
 
-        </GoogleMap>
-        <button className="map-btn" onClick={this.saveMarkers}>Save markers</button>
-        <button className="map-btn" onClick={this.showMarkers}>{this.state.markersVisible ? 'Hide markers' : 'Show markers'}</button>
-      </div>
-    );
-  }
+        return (
+            <div>
+                <GoogleMap
+                    ref={el => this.refMap = el}
+                    defaultZoom={14}
+                    defaultCenter={this.props.pos}
+                    onClick={this.handleClickOnTheMap}
+                >
+                    <Marker {...this.state.myPosition}/>
+                    {
+                        this.renderMarkers([...nearbyPlaces, ...savedMarkers, ...this.state.markers])
+                    }
+                </GoogleMap>
+                <button className="map-btn" onClick={this.saveMarkers}>Save markers</button>
+                <button className="map-btn" onClick={this.showMarkers}>{this.state.myMarkersVisible ? 'Hide markers' : 'Show markers'}</button>
+            </div>
+        );
+    }
 }
 
 const mapDispatchToProps = {
-  setMyPlaces
+    setMyPlaces
 }
 
 const mapStateToProps = (state) => {
-  return {
-    placeType: getPlacesType(state),
-    myMarkers: getMyPlaces(state)
-  }
+    return {
+        nearPlacesType: getPlacesType(state),
+        myMarkers: getMyPlaces(state)
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withScriptjs(withGoogleMap(MyMap)));
