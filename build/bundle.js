@@ -52895,7 +52895,7 @@ var MapСontainer = function (_Component) {
                 pos: this.state.pos,
                 googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=' + _config2.default.apiKey + '&v=3.exp&libraries=geometry,drawing,places',
                 loadingElement: _react2.default.createElement('div', { style: { height: '100%' } }),
-                containerElement: _react2.default.createElement('div', { style: { height: '400px', width: '600px' } }),
+                containerElement: _react2.default.createElement('div', { style: { height: '400px', maxWidth: '600px' } }),
                 mapElement: _react2.default.createElement('div', { style: { height: '100%' } }) });
         }
     }, {
@@ -52906,7 +52906,7 @@ var MapСontainer = function (_Component) {
                 { className: 'map-container' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'map-container__map' },
+                    null,
                     Object.keys(this.state.pos).length ? this.renderGoogleMap() : ''
                 ),
                 _react2.default.createElement(

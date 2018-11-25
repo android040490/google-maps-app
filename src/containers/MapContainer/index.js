@@ -41,7 +41,7 @@ class MapСontainer extends Component {
                 pos={this.state.pos}
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${config.apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `400px`, width: '600px' }} />}
+                containerElement={<div style={{ height: `400px`, maxWidth: '600px' }} />}
                 mapElement={<div style={{ height: `100%` }} />} />
         )
     }
@@ -49,7 +49,7 @@ class MapСontainer extends Component {
     render() {
         return (
             <div className="map-container">
-                <div className="map-container__map">
+                <div>
                     {Object.keys(this.state.pos).length ? this.renderGoogleMap() : ''}
                 </div>
                 <div className="map-container__sidebar">

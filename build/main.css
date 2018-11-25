@@ -109,11 +109,11 @@ a {
 }
 .map-container {
   position: relative;
-  width: 600px;
+  max-width: 600px;
 }
 .map-container__sidebar {
   position: absolute;
-  top: 15%;
+  top: 25%;
   left: 0;
 }
 .map-sidebar {
