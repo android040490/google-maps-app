@@ -13,7 +13,3 @@ Fill out the login form with the following data:
 * email : `user@gmail.com`
 * password : `1234`
 
-### Entry to the application
-Fill out the login form with the following data:
-* email : `user@gmail.com`
-* password : `1234`
