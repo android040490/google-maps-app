@@ -1,0 +1,44 @@
+{
+  "markers": [
+    {
+      "position": {
+        "lat": 46.47508264339079,
+        "lng": 30.64555692485351
+      }
+    },
+    {
+      "position": {
+        "lat": 46.471181308398485,
+        "lng": 30.640407083544915
+      }
+    },
+    {
+      "position": {
+        "lat": 46.476737670714215,
+        "lng": 30.63980626872558
+      }
+    },
+    {
+      "position": {
+        "lat": 46.471772437737926,
+        "lng": 30.642209528002923
+      }
+    },
+    {
+      "position": {
+        "lat": 46.46651116090844,
+        "lng": 30.642209528002923
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Vasya",
+      "surname": "Pupkin",
+      "email": "user@gmail.com",
+      "password": "1234",
+      "avatar": "assets/images/Vasya.png"
+    }
+  ]
+}

@@ -17,6 +17,7 @@
     "history": "^4.7.2",
     "jsonwebtoken": "^8.4.0",
     "less": "^3.8.0",
+    "lowdb": "^1.0.0",
     "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

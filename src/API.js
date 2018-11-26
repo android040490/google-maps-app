@@ -18,3 +18,13 @@ export function getAuth(token){
         headers: {'Authorization': `Bearer ${token}`}
     })
 }
+
+export function postMarkers(markers){
+    return axios({
+        method: 'post',
+        url: '/api/places',
+        data: {
+            markers
+        }
+    })
+}

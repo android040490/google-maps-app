@@ -14,7 +14,11 @@ export const setSearchType = (placeType) => dispatch => {
 }
 
 export const setMyPlaces = (markers) => dispatch => {
-    dispatch({type : SET_MY_PLACES , payload : markers})
+    API.postMarkers(markers)
+        .then(res => {
+            dispatch({type : SET_MY_PLACES , payload : res.data})
+        })
+        .catch(err => console.log(err))
 }
 
 export const login = (email, password) => dispatch => {
