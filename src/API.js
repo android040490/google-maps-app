@@ -28,3 +28,10 @@ export function postMarkers(markers){
         }
     })
 }
+
+export function getMarkers(){
+    return axios({
+        method: 'get',
+        url: '/api/places'
+    })
+}

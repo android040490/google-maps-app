@@ -37,7 +37,7 @@ app.post('/api/login', (req, res) => {
     
     if( user ){
         jwt.sign({...user}, 'secret', (err, token) => {
-            res.json({token: token})
+            res.json({token: token});
         });
     } else {
         res.status(401).send({message: 'Wrong email or password'})
@@ -47,15 +47,21 @@ app.post('/api/login', (req, res) => {
 app.post('/api/places', (req, res) => {
     let myMarkers = db.get('markers')
         .push(...req.body.markers)
-        .write()
+        .write();
     
-    res.send(myMarkers)
+    res.send(myMarkers);
+})
+
+app.get('/api/places', (req, res) => {
+    let myMarkers = db.get('markers').value();
+
+    res.send(myMarkers);
 })
 
 app.use('/*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/build/index.html'), (err) => {
         if (err){
-            res.status(500).send(err)
+            res.status(500).send(err);
         }
     })
 })
@@ -71,8 +77,8 @@ function verifyToken(req, res, next) {
     if (bearerHeader) {
         const bearerToken = bearerHeader.split(' ')[1];
         req.token = bearerToken;
-        next()
+        next();
     } else {
-        res.sendStatus(403)  
+        res.sendStatus(403);
     };
 };

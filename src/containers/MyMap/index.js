@@ -7,7 +7,7 @@ import {
     Marker,
 } from "react-google-maps";
 
-import { setMyPlaces } from 'redux-store/actions';
+import { setMyMarkers, getMyMarkers } from 'redux-store/actions';
 import { getPlacesType, getMyPlaces } from 'redux-store/selectors';
 
 class MyMap extends Component {
@@ -28,6 +28,7 @@ class MyMap extends Component {
     }
 
     componentDidMount() {
+        this.props.getMyMarkers();
         this.getPlaces(this.props.nearPlacesType)
         let myPosition = {
             position: this.props.pos,
@@ -94,7 +95,7 @@ class MyMap extends Component {
 
     saveMarkers() {
         if (this.state.markers.length) {
-            this.props.setMyPlaces(this.state.markers)
+            this.props.setMyMarkers(this.state.markers)
             this.setState({ markers: [], myMarkersVisible: false })
         }
     }
@@ -138,7 +139,8 @@ class MyMap extends Component {
 }
 
 const mapDispatchToProps = {
-    setMyPlaces
+    setMyMarkers,
+    getMyMarkers
 }
 
 const mapStateToProps = (state) => {

@@ -2,6 +2,7 @@
 import {
     SET_SEARCH_PLACES_TYPE,
     SET_MY_PLACES,
+    GET_MY_PLACES,
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
@@ -13,12 +14,25 @@ export const setSearchType = (placeType) => dispatch => {
     dispatch({type : SET_SEARCH_PLACES_TYPE, payload : placeType})
 }
 
-export const setMyPlaces = (markers) => dispatch => {
+export const setMyMarkers = (markers) => dispatch => {
     API.postMarkers(markers)
         .then(res => {
-            dispatch({type : SET_MY_PLACES , payload : res.data})
+            dispatch({
+                type : SET_MY_PLACES,
+                payload : res.data
+            })
         })
         .catch(err => console.log(err))
+}
+
+export const getMyMarkers = () => dispatch => {
+    API.getMarkers()
+        .then(res => {
+            dispatch({
+                type : GET_MY_PLACES,
+                payload : res.data
+            })
+        })
 }
 
 export const login = (email, password) => dispatch => {

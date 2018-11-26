@@ -2,7 +2,8 @@ import * as R from 'ramda';
 
 import {
     SET_SEARCH_PLACES_TYPE,
-    SET_MY_PLACES
+    SET_MY_PLACES,
+    GET_MY_PLACES
 } from '../actionTypes';
 
 
@@ -18,7 +19,10 @@ export default (state = initialState, { type, payload}) => {
             return R.merge(state, {placeType : payload});
 
         case SET_MY_PLACES:
-            return R.merge(state, { myPlaces : payload})
+            return R.merge(state, { myPlaces : payload});
+
+        case GET_MY_PLACES:
+            return R.merge(state, { myPlaces : payload});
         
         default:
             return state;
